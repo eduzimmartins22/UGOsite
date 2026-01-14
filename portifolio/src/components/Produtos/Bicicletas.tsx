@@ -6,28 +6,31 @@ import {
   Paper,
   Typography,
 } from "@mui/material"
-
-import Celulares from "../images/Celulares.png"
-import Capinhas from "../images/Capinhas.png"
-import Peliculas from "../images/Peliculas.png"
-import Mochilas from "../images/Mochilas.png"
-import Fones from "../images/Fones.png"
-import CaixasSom from "../images/CaixasSom.png"
-import Bicicletas from "../images/Bicicletas.png"
+import { Link } from "react-router-dom"
+import Bicicletas from "../../images/Bicicletas.png"
 
 const items = [
-  { name: "Celulares", image: Celulares, link: "/produtos/celulares" },
-  { name: "Capinhas", image: Capinhas, link: "/produtos/capinhas" },
-  { name: "Películas", image: Peliculas, link: "/produtos/peliculas" },
-  { name: "Mochilas", image: Mochilas, link: "/produtos/mochilas" },
-  { name: "Fones", image: Fones, link: "/produtos/fones" },
-  { name: "Caixas de Som", image: CaixasSom, link: "/produtos/caixas-som" },
-  { name: "Bicicletas Motorizadas", image: Bicicletas, link: "/bicicletas#Bicicletas" },
+  { name: "Bicicletas Motorizadas", image: Bicicletas },
+   { name: "Bicicletas Motorizadas", image: Bicicletas },
+    { name: "Bicicletas Motorizadas", image: Bicicletas },
+     { name: "Bicicletas Motorizadas", image: Bicicletas },
+      { name: "Bicicletas Motorizadas", image: Bicicletas },
+       { name: "Bicicletas Motorizadas", image: Bicicletas },
+        { name: "Bicicletas Motorizadas", image: Bicicletas },
+         { name: "Bicicletas Motorizadas", image: Bicicletas },
+          { name: "Bicicletas Motorizadas", image: Bicicletas },
+           { name: "Bicicletas Motorizadas", image: Bicicletas },
+            { name: "Bicicletas Motorizadas", image: Bicicletas },
+             { name: "Bicicletas Motorizadas", image: Bicicletas },
+              { name: "Bicicletas Motorizadas", image: Bicicletas },
+               { name: "Bicicletas Motorizadas", image: Bicicletas },
+                { name: "Bicicletas Motorizadas", image: Bicicletas },
+                 { name: "Bicicletas Motorizadas", image: Bicicletas },
 ]
 
 const Products = () => {
   return (
-    <Box id="produtos" py={19}>
+    <Box id="Bicicletas" py={19}>
       <Container>
         <Typography variant="h2" textAlign="center" mb={6}>
           Nossos <span style={{ color: "#FF8C00" }}>Produtos</span>
@@ -70,25 +73,33 @@ const Products = () => {
                   {item.name}
                 </Typography>
 
-                {/* Botão */}
-                <Button
-                  variant="contained"
-                  href={item.link || item.href}
-                  sx={{
-                    mt: 2,
-                    backgroundColor: "#FF8C00",
-                    "&:hover": {
-                      backgroundColor: "#e67e00",
-                    },
-                  }}
-                >
-                  Ver mais
-                </Button>
+              
+                
               </Paper>
             </Grid>
           ))}
         </Grid>
       </Container>
+     <Box display="flex" justifyContent="center" mt={4}>
+  <Button
+    component={Link}
+    to="/"
+    sx={{
+      color: "white",
+      backgroundColor: "#070707",
+      width: "150px",
+      height: "50px",
+      borderRadius: "8px",
+      "&:hover": {
+        backgroundColor: "#333333",
+      },
+    }}
+  >
+    VOLTAR AO INÍCIO
+  </Button>
+</Box>
+
+
     </Box>
   )
 }

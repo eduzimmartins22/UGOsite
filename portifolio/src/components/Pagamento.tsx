@@ -17,7 +17,6 @@ const Pagamento = () => {
         </Typography>
 
         <Grid container spacing={3} justifyContent="center">
-          {/* PIX */}
           <Grid item xs={12} md={6}>
             <Paper sx={{ p: 4, textAlign: "center" }}>
               <Typography variant="h6" mb={2}>
