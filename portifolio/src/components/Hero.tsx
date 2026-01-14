@@ -4,21 +4,21 @@ const Hero = () => {
   return (
     <Box
       sx={{
-        minHeight: "90vh",
-        display: "flex",
+        minHeight: "700px",
+        display: "center",
         alignItems: "center",
         textAlign: "center",
         background: "linear-gradient(135deg, #1E1E1E, #111111)",
         
       }}
     >
-  
-      <Container >
-        <Typography  variant="h1" mb={3}>
+
+      <Container id="topo">
+        <Typography  variant="h2" mb={3}>
           Conectando você ao melhor da tecnologia
         </Typography>
 
-        <Button
+        <Button 
           variant="contained"
           size="large"
           href="#produtos"

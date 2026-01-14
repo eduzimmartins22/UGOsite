@@ -8,7 +8,7 @@ const PixImg = styled("img")({
   objectFit: "contain",
 })
 
-const Payment = () => {
+const Pagamento = () => {
   return (
     <Box id="pagamento" py={16}>
       <Container>
@@ -69,19 +69,23 @@ const Payment = () => {
               
             </Paper>
           </Grid>
-          <Button href="#Header" sx={{
-            color: "white",
-            backgroundColor: "#070707",
-            width: "180px",
-            height: "60px",
-            display: "flex",
-            justifyContent: "center",
-            
-            }}>VOLTAR AO TOPO</Button>
         </Grid>
+        <Button
+  href="#topo"
+  sx={{
+    color: "white",
+    backgroundColor: "#070707",
+    width: "180px",
+    height: "60px",
+    display: "flex",
+    justifyContent: "center",
+  }}
+>
+  VOLTAR AO TOPO
+</Button>
       </Container>
     </Box>
   )
 }
 
-export default Payment
+export default Pagamento

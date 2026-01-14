@@ -2,7 +2,7 @@ import styled from "@emotion/styled"
 import { AppBar, Toolbar, Typography, Box, Button } from "@mui/material"
 import Logo from "../images/Logo.png"
 
-// ================= STYLES =================
+
 
 const LogoImg = styled("img")({
   width: 42,
@@ -11,6 +11,7 @@ const LogoImg = styled("img")({
   borderRadius: 8,
   objectFit: "contain",
 })
+
 
 const Header = () => {
   return (
@@ -28,20 +29,14 @@ const Header = () => {
           justifyContent: "space-between",
         }}
       >
-        {/* LOGO + NOME */}
         <Box display="flex" alignItems="center" gap={1}>
           <LogoImg src={Logo} alt="UGO Celulares" />
 
-          <Typography
-            fontWeight={800}
-            fontSize={18}
-            color="white"
-          >
+          <Typography fontWeight={800} fontSize={18} color="white">
             UGO <span style={{ color: "#FF8C00" }}>CELULARES</span>
           </Typography>
         </Box>
 
-       
         <Box sx={{ display: { xs: "none", sm: "flex" }, gap: 2 }}>
           <Button href="#produtos" sx={{ color: "white" }}>
             Produtos
@@ -57,5 +52,6 @@ const Header = () => {
     </AppBar>
   )
 }
+
 
 export default Header

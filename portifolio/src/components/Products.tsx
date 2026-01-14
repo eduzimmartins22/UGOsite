@@ -13,7 +13,7 @@ const items = [
 
 const Products = () => {
   return (
-    <Box id="produtos" py={26}>
+    <Box id="produtos" py={19}>
       <Container>
         <Typography variant="h2" textAlign="center" mb={4}>
           Nossos <span style={{ color: "#FF8C00" }}>Produtos</span>
