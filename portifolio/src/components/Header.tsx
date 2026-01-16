@@ -5,18 +5,16 @@ import {
   Toolbar,
   Typography,
   Box,
-  Button,
   IconButton,
   Menu,
   MenuItem,
-  Drawer,
-  Badge,
   Divider,
+  Badge,
 } from "@mui/material"
 
 import MenuIcon from "@mui/icons-material/Menu"
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart"
-
+import { useCart } from "../context/useCart"
 import Logo from "../images/Logo.png"
 
 /* ================= STYLES ================= */
@@ -33,7 +31,9 @@ const LogoImg = styled("img")({
 
 const Header = () => {
   const [menuAnchor, setMenuAnchor] = useState(null)
-  const [cartOpen, setCartOpen] = useState(false)
+  const [openProdutos, setOpenProdutos] = useState(false)
+
+  const { cartItems } = useCart()
 
   const isMenuOpen = Boolean(menuAnchor)
 
@@ -43,6 +43,7 @@ const Header = () => {
 
   const handleMenuClose = () => {
     setMenuAnchor(null)
+    setOpenProdutos(false)
   }
 
   return (
@@ -55,39 +56,20 @@ const Header = () => {
           backdropFilter: "blur(6px)",
         }}
       >
-        <Toolbar
-          sx={{
-            display: "flex",
-            justifyContent: "space-between",
-          }}
-        >
+        <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
           {/* LOGO */}
           <Box display="flex" alignItems="center" gap={1}>
             <LogoImg src={Logo} alt="UGO Celulares" />
-
             <Typography fontWeight={800} fontSize={18} color="white">
               UGO <span style={{ color: "#FF8C00" }}>CELULARES</span>
             </Typography>
           </Box>
 
-          {/* MENU DESKTOP */}
-          <Box sx={{ display: { xs: "none", sm: "flex" }, gap: 2 }}>
-            <Button href="#produtos" sx={{ color: "white" }}>
-              Produtos
-            </Button>
-            <Button href="#localizacao" sx={{ color: "white" }}>
-              Localização
-            </Button>
-            <Button href="#pagamento" sx={{ color: "white" }}>
-              Pagamento
-            </Button>
-          </Box>
-
-          {/* ICONES DIREITA */}
-          <Box display="flex" alignItems="center" gap={1}>
+          {/* ICONES */}
+          <Box display="flex" alignItems="center">
             {/* CARRINHO */}
-            <IconButton color="inherit" onClick={() => setCartOpen(true)}>
-              <Badge badgeContent={2} color="warning">
+            <IconButton color="inherit" component="a" href="/cart">
+              <Badge badgeContent={cartItems.length} color="warning">
                 <ShoppingCartIcon />
               </Badge>
             </IconButton>
@@ -100,7 +82,7 @@ const Header = () => {
         </Toolbar>
       </AppBar>
 
-      {/* MENU DROPDOWN */}
+      {/* MENU */}
       <Menu
         anchorEl={menuAnchor}
         open={isMenuOpen}
@@ -108,59 +90,47 @@ const Header = () => {
         anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
         transformOrigin={{ vertical: "top", horizontal: "right" }}
       >
-        <MenuItem disabled>Produtos</MenuItem>
-        <MenuItem sx={{ pl: 4 }}>Celulares</MenuItem>
-        <MenuItem sx={{ pl: 4 }}>Película</MenuItem>
-        <MenuItem sx={{ pl: 4 }}>Capinhas</MenuItem>
-        <MenuItem sx={{ pl: 4 }}>Mochilas</MenuItem>
-        <MenuItem sx={{ pl: 4 }}>Bicicletas</MenuItem>
-        <MenuItem sx={{ pl: 4 }}>Fones</MenuItem>
-        <MenuItem sx={{ pl: 4 }}>Caixas de Som</MenuItem>
-        
+        <MenuItem
+          onClick={() => setOpenProdutos(!openProdutos)}
+          sx={{ fontWeight: 600 }}
+        >
+          Produtos
+        </MenuItem>
+
+        {openProdutos && (
+          <Box sx={{ pl: 2 }}>
+            {[
+              "Celulares",
+              "Película",
+              "Capinhas",
+              "Mochilas",
+              "Bicicletas",
+              "Fones",
+              "Caixas de Som",
+            ].map((item) => (
+              <MenuItem
+                key={item}
+                component="a"
+                href="/bicicletas#bicicletas"
+                onClick={handleMenuClose}
+                sx={{ fontSize: 14 }}
+              >
+                {item}
+              </MenuItem>
+            ))}
+          </Box>
+        )}
+
         <Divider />
 
-        <MenuItem onClick={handleMenuClose}>Localização</MenuItem>
-        <MenuItem onClick={handleMenuClose}>Contato</MenuItem>
+        <MenuItem component="a" href="#localizacao" onClick={handleMenuClose}>
+          Localização
+        </MenuItem>
+
+        <MenuItem component="a" href="#pagamento" onClick={handleMenuClose}>
+          Pagamento
+        </MenuItem>
       </Menu>
-
-      {/* DRAWER DO CARRINHO */}
-      <Drawer
-        anchor="right"
-        open={cartOpen}
-        onClose={() => setCartOpen(false)}
-      >
-        <Box width={320} p={2}>
-          <Typography variant="h6" fontWeight={700}>
-            Carrinho
-          </Typography>
-
-          <Divider sx={{ my: 2 }} />
-
-          {/* ITEM EXEMPLO */}
-          <Box display="flex" justifyContent="space-between" mb={1}>
-            
-          </Box>
-
-          <Typography variant="body2" color="gray">
-            Quantidade: 1
-          </Typography>
-
-          <Divider sx={{ my: 2 }} />
-
-          <Typography fontWeight={700}>
-      
-          </Typography>
-
-          <Button
-            fullWidth
-            sx={{ mt: 2 }}
-            variant="contained"
-            color="warning"
-          >
-            Escolher pagamento
-          </Button>
-        </Box>
-      </Drawer>
     </>
   )
 }

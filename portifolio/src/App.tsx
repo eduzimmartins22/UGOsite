@@ -5,33 +5,36 @@ import Hero from "./components/Hero"
 import Products from "./components/Products"
 import Location from "./components/Location"
 import Pagamento from "./components/Pagamento"
+import ScrollToHash from "./components/ScrollToHash"
 
 import Bicicletas from "./components/Produtos/Bicicletas"
-import ScrollToHash from "./components/ScrollToHash"
+import { CartProvider } from "./context/CartProvider"
 
 const App = () => {
   return (
     <BrowserRouter>
-      <ScrollToHash />
+      <CartProvider>
+        <ScrollToHash />
 
-      <Routes>
-        {/* HOME */}
-        <Route
-          path="/"
-          element={
-            <>
-              <Header />
-              <Hero />
-              <Products />
-              <Location />
-              <Pagamento />
-            </>
-          }
-        />
+        <Routes>
+          {/* HOME */}
+          <Route
+            path="/"
+            element={
+              <>
+                <Header />
+                <Hero />
+                <Products />
+                <Location />
+                <Pagamento />
+              </>
+            }
+          />
 
-       
-        <Route path="/bicicletas" element={<Bicicletas />} />
-      </Routes>
+          {/* PRODUTOS */}
+          <Route path="/bicicletas" element={<Bicicletas />} />
+        </Routes>
+      </CartProvider>
     </BrowserRouter>
   )
 }
