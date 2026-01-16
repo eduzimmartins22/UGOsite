@@ -128,7 +128,7 @@ const Header = () => {
         </MenuItem>
 
         <MenuItem component="a" href="#pagamento" onClick={handleMenuClose}>
-          Pagamento
+          Contato
         </MenuItem>
       </Menu>
     </>
