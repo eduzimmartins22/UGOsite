@@ -8,6 +8,18 @@ const EstabelecimentoImg = styled("img")({
   borderRadius: 12,
 })
 
+const hoverCard = {
+  backgroundColor: "#2e2d2dff",
+  padding: 3,
+  borderRadius: 3,
+  boxShadow: 3,
+  transition: "all 0.3s ease",
+  "&:hover": {
+    transform: "translateY(-6px) scale(1.02)",
+    boxShadow: 8,
+  },
+}
+
 const Location = () => {
   return (
     <Box id="localizacao" py={11} bgcolor="background.paper">
@@ -26,17 +38,14 @@ const Location = () => {
             display: { xs: "block", md: "flex" },
             alignItems: "center",
             justifyContent: "center",
-            gap: 8, // espaço considerável entre imagem e mapa
+            gap: 8,
           }}
         >
-          
+          {/* IMAGEM */}
           <Box
             sx={{
+              ...hoverCard,
               display: { xs: "none", md: "block" },
-              backgroundColor: "#2e2d2dff",
-              padding: 3,
-              borderRadius: 3,
-              boxShadow: 3,
               maxWidth: 500,
             }}
           >
@@ -46,8 +55,13 @@ const Location = () => {
             />
           </Box>
 
-        
-          <Box sx={{ width: { xs: "100%", md: "60%" } }}>
+          {/* MAPA */}
+          <Box
+            sx={{
+              ...hoverCard,
+              width: { xs: "100%", md: "60%" },
+            }}
+          >
             <iframe
               width="100%"
               height="300"

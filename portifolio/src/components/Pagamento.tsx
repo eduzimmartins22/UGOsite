@@ -1,3 +1,4 @@
+import { useState } from "react"
 import {
   Box,
   Container,
@@ -9,6 +10,40 @@ import {
 } from "@mui/material"
 
 const Pagamento = () => {
+  const [formData, setFormData] = useState({
+    nome: "",
+    email: "",
+    telefone: "",
+    pergunta: "",
+  })
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    })
+  }
+
+  const handleSubmit = () => {
+    const mensagem = `
+Olá, gostaria de entrar em contato.
+
+📌 Nome: ${formData.nome}
+📧 Gmail: ${formData.email}
+📱 Telefone: ${formData.telefone}
+
+❓ Pergunta:
+${formData.pergunta}
+    `.trim()
+
+    const telefoneDestino = "5527999346464"
+    const url = `https://wa.me/${telefoneDestino}?text=${encodeURIComponent(
+      mensagem
+    )}`
+
+    window.open(url, "_blank")
+  }
+
   return (
     <Box id="pagamento" py={16} sx={{ backgroundColor: "#F2F2F2" }}>
       <Container>
@@ -25,49 +60,32 @@ const Pagamento = () => {
                 display: "flex",
                 flexDirection: "column",
                 gap: 3,
-                height: "100%",
                 backgroundColor: "#FAFAFA",
                 border: "1px solid #E0E0E0",
                 borderRadius: 2,
               }}
             >
-              {/* EMAIL */}
               <Box>
-                <Typography
-                  variant="caption"
-                  color="text.secondary"
-                  sx={{ display: "block", mb: 0.5 }}
-                  color="#503d3d"
-                >
-                  GMAIL
+                <Typography sx={{ color: "#503d3d", mb: 0.5 }}>
+                  Gmail
                 </Typography>
 
                 <Typography
-                  variant="body2"
                   sx={{
-                    wordBreak: "break-word",
                     backgroundColor: "#1A1818",
                     color: "#FFFFFF",
                     fontSize: 14,
-                    fontFamily: "Arial Rounded MT Bold",
                     padding: "6px 10px",
                     borderRadius: 1.5,
                     display: "inline-block",
-                    
                   }}
                 >
                   ugocelularescontato@gmail.com
                 </Typography>
               </Box>
 
-              {/* WHATSAPP */}
               <Box>
-                <Typography
-                  variant="subtitle2"
-                  color="text.secondary"
-                  mb={1}
-                  color="#503d3d"
-                >
+                <Typography sx={{ color: "#503d3d", mb: 1 }}>
                   Whatsapp
                 </Typography>
 
@@ -76,7 +94,7 @@ const Pagamento = () => {
                   color="success"
                   href="https://wa.me/5527999346464"
                 >
-                  falar no whatsapp
+                  Falar no WhatsApp
                 </Button>
               </Box>
             </Paper>
@@ -93,83 +111,108 @@ const Pagamento = () => {
               }}
             >
               <Typography
-                variant="subtitle1"
                 textAlign="center"
-                mb={3}
-                fontWeight={600}
                 sx={{
                   backgroundColor: "#1A1818",
                   color: "#FFFFFF",
                   fontSize: 13,
-                  letterSpacing: 1,
                   padding: "6px 14px",
                   borderRadius: 2,
-                  display: "inline-block",
                   margin: "0 auto 16px",
+                 
                 }}
               >
-                PERGUNTAS
+                TIRE SUAS DÚVIDAS AQUI !
               </Typography>
 
-              <Box
-                component="form"
-                display="flex"
-                flexDirection="column"
-                gap={2}
-                
-              >
-              <TextField label="Nome" fullWidth sx={inputStyle} />
-              <TextField label="Gmail" type="email" fullWidth sx={inputStyle} />
-              <TextField label="Número" type="tel" fullWidth sx={inputStyle} />
-              <TextField label="Pergunta" multiline rows={4} fullWidth sx={inputStyle} />
-                <Button variant="contained">
-                  enviar
+              <Box component="form" display="flex" flexDirection="column" gap={2} >
+                <TextField
+                  label="Nome"
+                  name="nome"
+                  value={formData.nome}
+                  onChange={handleChange}
+                  fullWidth
+                  sx={inputStyle}
+                />
+
+                <TextField
+                  label="Gmail"
+                  name="email"
+                  type="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  fullWidth
+                  sx={inputStyle}
+                />
+
+                <TextField
+                  label="Número"
+                  name="telefone"
+                  type="tel"
+                  value={formData.telefone}
+                  onChange={handleChange}
+                  fullWidth
+                  sx={inputStyle}
+                />
+
+                <TextField
+                  label="Pergunta"
+                  name="pergunta"
+                  value={formData.pergunta}
+                  onChange={handleChange}
+                  multiline
+                  rows={4}
+                  fullWidth
+                  sx={inputStyle}
+                  
+                />
+
+                <Button variant="contained" onClick={handleSubmit}>
+                  Enviar
                 </Button>
               </Box>
             </Paper>
           </Grid>
         </Grid>
-
-        <Box display="flex" justifyContent="center" mt={6}>
-          <Button
-            href="#topo"
-            sx={{
-              color: "#FFFFFF",
-              backgroundColor: "#070707",
-              width: "180px",
-              height: "60px",
-              "&:hover": {
-                backgroundColor: "#1A1818",
-              },
-            }}
-          >
-            voltar ao topo
-          </Button>
-        </Box>
       </Container>
     </Box>
   )
 }
+
 const inputStyle = {
   "& .MuiInputLabel-root": {
-    color: "#503d3d",
+    color: "#ffffff",
   },
+
   "& .MuiInputLabel-root.Mui-focused": {
-    color: "#503d3d",
+    color: "#bb9a09",
   },
+
   "& .MuiOutlinedInput-root": {
+    backgroundColor: "#1E1E1E",
+    color: "#EAEAEA",
+          // 👈 TEXTO DIGITADO
+
+    "& input": {
+      color: "#FFFFFF",
+    },
+
+    "& textarea": {
+      color: "#FFFFFF",
+    },
+
     "& fieldset": {
       borderColor: "#503d3d",
     },
+
     "&:hover fieldset": {
       borderColor: "#1A1818",
     },
+
     "&.Mui-focused fieldset": {
       borderColor: "#1A1818",
     },
-    
   },
 }
-
 
 export default Pagamento
