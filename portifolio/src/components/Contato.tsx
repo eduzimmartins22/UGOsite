@@ -70,18 +70,13 @@ ${formData.pergunta}
                   Gmail
                 </Typography>
 
-                <Typography
-                  sx={{
-                    backgroundColor: "#1A1818",
-                    color: "#FFFFFF",
-                    fontSize: 14,
-                    padding: "6px 10px",
-                    borderRadius: 1.5,
-                    display: "inline-block",
-                  }}
+                <Button
+                  variant="contained"
+                  color="error"
+                  href="mailto:ugocelularescontato@gmail.com"
                 >
-                  ugocelularescontato@gmail.com
-                </Typography>
+                  FALAR NO GMAIL
+                </Button>
               </Box>
 
               <Box>
