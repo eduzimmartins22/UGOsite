@@ -16,14 +16,15 @@ import CaixasSom from "../images/CaixasSom.png"
 import Bicicletas from "../images/Bicicletas.png"
 
 const items = [
-  { name: "Celulares", image: Celulares, link: "/produtos/celulares" },
-  { name: "Capinhas", image: Capinhas, link: "/produtos/capinhas" },
-  { name: "Películas", image: Peliculas, link: "/produtos/peliculas" },
-  { name: "Mochilas", image: Mochilas, link: "/produtos/mochilas" },
-  { name: "Fones", image: Fones, link: "/produtos/fones" },
-  { name: "Caixas de Som", image: CaixasSom, link: "/produtos/caixas-som" },
-  { name: "Bicicletas Motorizadas", image: Bicicletas, link: "/bicicletas#bicicletas" },
+  { name: "Celulares", image: Celulares, link: "/celulares" },
+  { name: "Capinhas", image: Capinhas, link: "/capinhas" },
+  { name: "Películas", image: Peliculas, link: "/peliculas" },
+  { name: "Mochilas", image: Mochilas, link: "/mochilas" },
+  { name: "Fones", image: Fones, link: "/fones" },
+  { name: "Caixas de Som", image: CaixasSom, link: "/caixas-som" },
+  { name: "Bicicletas Motorizadas", image: Bicicletas, link: "/bicicletas" },
 ]
+
 
 const Products = () => {
   return (
