@@ -11,7 +11,6 @@ import {
   Divider,
   Badge,
 } from "@mui/material"
-import type { MouseEvent } from "react"
 import { Link } from "react-router-dom"
 import MenuIcon from "@mui/icons-material/Menu"
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart"
@@ -31,16 +30,17 @@ const LogoImg = styled("img")({
 /* ================= COMPONENT ================= */
 
 const Header = () => {
-  const [menuAnchor, setMenuAnchor] = useState(null)
+  const [menuAnchor, setMenuAnchor] = useState<null | HTMLElement>(null)
   const [openProdutos, setOpenProdutos] = useState(false)
 
   const { cartItems } = useCart()
 
   const isMenuOpen = Boolean(menuAnchor)
 
-  const handleMenuOpen = (event) => {
+  const handleMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
     setMenuAnchor(event.currentTarget)
   }
+
 
   const handleMenuClose = () => {
     setMenuAnchor(null)
@@ -109,15 +109,15 @@ const Header = () => {
               { label: "Fones", path: "/fones" },
               { label: "Caixas de Som", path: "/caixas-som" },
             ].map((item) => (
-          <MenuItem
-    key={item.path}
-    component={Link}
-    to={item.path}
-    onClick={handleMenuClose}
-  >
-    {item.label}
-  </MenuItem>
-))}
+              <MenuItem
+                key={item.path}
+                component={Link}
+                to={item.path}
+                onClick={handleMenuClose}
+              >
+                {item.label}
+              </MenuItem>
+            ))}
 
           </Box>
         )}
@@ -127,7 +127,7 @@ const Header = () => {
         <MenuItem component="a" href="#Reparo" onClick={handleMenuClose}>
           Reparos
         </MenuItem>
-          
+
         <MenuItem component="a" href="#localizacao" onClick={handleMenuClose}>
           Localização
         </MenuItem>

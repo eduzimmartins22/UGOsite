@@ -53,7 +53,7 @@ ${formData.pergunta}
 
         <Grid container spacing={4} justifyContent="center">
           {/* CONTATOS */}
-          <Grid item xs={12} md={6}>
+          <Grid size={{ xs: 12, md: 6 }}>
             <Paper
               sx={{
                 p: 4,
@@ -96,7 +96,7 @@ ${formData.pergunta}
           </Grid>
 
           {/* FORMULÁRIO */}
-          <Grid item xs={12} md={6}>
+          <Grid size={{ xs: 12, md: 6 }}>
             <Paper
               sx={{
                 p: 4,
@@ -114,7 +114,7 @@ ${formData.pergunta}
                   padding: "6px 14px",
                   borderRadius: 2,
                   margin: "0 auto 16px",
-                 
+
                 }}
               >
                 TIRE SUAS DÚVIDAS AQUI !
@@ -159,7 +159,7 @@ ${formData.pergunta}
                   rows={4}
                   fullWidth
                   sx={inputStyle}
-                  
+
                 />
 
                 <Button variant="contained" onClick={handleSubmit}>
@@ -186,7 +186,7 @@ const inputStyle = {
   "& .MuiOutlinedInput-root": {
     backgroundColor: "#1E1E1E",
     color: "#EAEAEA",
-          // 👈 TEXTO DIGITADO
+    // 👈 TEXTO DIGITADO
 
     "& input": {
       color: "#FFFFFF",

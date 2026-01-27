@@ -1,10 +1,10 @@
 import {
   Box,
   Container,
-  Grid,
   Paper,
   Typography,
 } from "@mui/material"
+import Grid from "@mui/material/Grid"
 import { Link } from "react-router-dom"
 
 import Celulares from "../images/Celulares.png"
@@ -37,7 +37,7 @@ const Products = () => {
 
         <Grid container spacing={5}>
           {items.map((item) => (
-            <Grid item xs={12} sm={6} md={4} key={item.name}>
+            <Grid size={{ xs: 12, sm: 6, md: 4 }} key={item.name}>
               <Paper
                 component={Link}
                 to={item.link}

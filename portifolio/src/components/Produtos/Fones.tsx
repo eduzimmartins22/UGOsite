@@ -1,5 +1,5 @@
-import { Box, Container, Grid, Typography, Button } from "@mui/material"
-
+import Grid from "@mui/material/Grid"
+import { Box, Container, Typography, Button } from "@mui/material"
 
 import ProductCard from "../../components/Produtos/ProductCart"
 import CartTopBar from "../../components/CartTopBar"
@@ -37,38 +37,38 @@ const Fones = () => {
       {/* 🔝 Carrinho fixo no topo */}
       <CartTopBar />
 
-     
+
 
       <Container>
-                  <Button
-  startIcon={<ArrowBackIcon />}
-  onClick={() => navigate(-1)}
-  sx={{
-    mb: 3,
-    color: "#FF8C00",
-    fontWeight: 600,
-    alignSelf: "flex-start",
-    "&:hover": {
-      backgroundColor: "rgba(255,140,0,0.1)",
-    },
-  }}
->
-  Voltar
-</Button>
-        
+        <Button
+          startIcon={<ArrowBackIcon />}
+          onClick={() => navigate(-1)}
+          sx={{
+            mb: 3,
+            color: "#FF8C00",
+            fontWeight: 600,
+            alignSelf: "flex-start",
+            "&:hover": {
+              backgroundColor: "rgba(255,140,0,0.1)",
+            },
+          }}
+        >
+          Voltar
+        </Button>
+
         <Typography variant="h2" textAlign="center" mb={6} color="white">
           Bicicletas <span style={{ color: "#FF8C00" }}>Motorizadas</span>
         </Typography>
 
         <Grid container spacing={5}>
           {items.map((item) => (
-            <Grid item xs={12} sm={6} md={4} key={item.id}>
+            <Grid size={{ xs: 12, sm: 6, md: 4 }} key={item.id}>
               <ProductCard product={item} />
             </Grid>
           ))}
         </Grid>
       </Container>
-      
+
     </Box>
   )
 }
