@@ -57,7 +57,7 @@ const Capinhas = () => {
         </Button>
 
         <Typography variant="h2" textAlign="center" mb={6} color="white">
-          Bicicletas <span style={{ color: "#FF8C00" }}>Motorizadas</span>
+         <span style={{ color: "#FF8C00" }}>Capinhas</span>
         </Typography>
 
         <Grid container spacing={5}>
