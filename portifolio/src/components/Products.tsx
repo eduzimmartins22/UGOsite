@@ -33,6 +33,7 @@ const Products = () => {
         <Typography variant="h2" textAlign="center" mb={6}>
           <span style={{ color: "#131212" }}>Nossos</span>{" "}
           <span style={{ color: "#FF8C00" }}>Produtos</span>
+          <span style={{ color: "#131212" }}>(EM MANUTENÇÃO)</span>{" "}
         </Typography>
 
         <Grid container spacing={5}>
