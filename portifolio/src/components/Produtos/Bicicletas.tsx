@@ -57,7 +57,8 @@ const items = [
   { id: "3961", name: "Aplicação de Película", model: "Geral", image: BicicletaImg, price: 10 },
   { id: "5862", name: "Capa Celular Space", model: "Space", image: BicicletaImg, price: 25 },
   { id: "4604", name: "Capas Promoção", model: "Geral", image: BicicletaImg, price: 15 },
-  { id: "5733", name: "Carregador Inova", model: "TC 1M", image: BicicletaImg, price: 30 }
+  { id: "5733", name: "Carregador Inova", model: "TC 1M", image: BicicletaImg, price: 30 },
+  { id: "5949", name: "Bicicleta Elétrica V10", model: "Max Marron", image: BicicletaImg, price: 6600 },
 ];
 
 const Bicicletas = () => {
