@@ -57,7 +57,7 @@ const Hero = () => {
             letterSpacing: "-1px",
           }}
         >
-          Conectando você a{" "}
+          Conectando você à{" "}
           <span
             style={{
               background: "linear-gradient(135deg,#ff8c00,#ffb347)",
