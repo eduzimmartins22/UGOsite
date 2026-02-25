@@ -50,7 +50,7 @@ const Mochilas = () => {
 
 
   return (
-    <Box py={16} bgcolor="#111">
+    <Box pt={0} pb={10} bgcolor="#111">
       {/* 🔝 Carrinho fixo no topo */}
       <CartTopBar />
 

@@ -21,6 +21,7 @@ const CartTopBar = () => {
         position: "sticky",
         top: 0,
         zIndex: 1000,
+        margin: "8px",
         backgroundColor: "#1a1a1a",
         borderBottom: "1px solid #333",
         py: 2,
