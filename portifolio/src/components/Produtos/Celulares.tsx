@@ -115,6 +115,10 @@ const Celulares = () => {
         <Typography variant="h2" textAlign="center" mb={6} color="white">
           <span style={{ color: "#FF8C00" }}>Celulares</span>
         </Typography>
+        <Typography variant="h5" textAlign="center" mb={6} color="white">
+          <span style={{ fontSize: "30px" }}>&#128392;</span>
+          <span style={{ color: "#d8d4d1" }}>Não vendemos Celulares no Boleto</span>
+        </Typography>
 
         <Grid container spacing={5}>
           {items.map((item) => (
