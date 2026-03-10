@@ -1,20 +1,9 @@
-import Grid from "@mui/material/Grid"
-import { Box, Container, Typography, Button } from "@mui/material"
-
-import ProductCard from "../../components/Produtos/ProductCart"
-import CartTopBar from "../../components/CartTopBar"
+import ProductPageLayout from "./ProductPageLayout"
 import CapinhasImg from "../../images/Capinhas.png"
 import CapaCouroImg from "../../images/CapaCouro.png"
 import CapaMagImg from "../../images/CapaMagnetica.png"
 import CapaSpaceImg from "../../images/CapaSpace.png"
 import CapaBlisterImg from "../../images/capaBlister.png"
-
-
-
-import ArrowBackIcon from "@mui/icons-material/ArrowBack"
-import { useNavigate } from "react-router-dom"
-
-
 
 const items = [
   {
@@ -59,51 +48,8 @@ const items = [
 },
 ]
 
-
-
 const Capinhas = () => {
-  const navigate = useNavigate()
-
-
-  return (
-    <Box pt={0} pb={10} bgcolor="#111">
-      {/* 🔝 Carrinho fixo no topo */}
-      <CartTopBar />
-
-
-
-      <Container>
-        <Button
-          startIcon={<ArrowBackIcon />}
-          onClick={() => navigate(-1)}
-          sx={{
-            mb: 3,
-            color: "#FF8C00",
-            fontWeight: 600,
-            alignSelf: "flex-start",
-            "&:hover": {
-              backgroundColor: "rgba(255,140,0,0.1)",
-            },
-          }}
-        >
-          Voltar
-        </Button>
-
-        <Typography variant="h2" textAlign="center" mb={6} color="white">
-         <span style={{ color: "#FF8C00" }}>Capinhas</span>
-        </Typography>
-
-        <Grid container spacing={5}>
-          {items.map((item) => (
-            <Grid size={{ xs: 12, sm: 6, md: 4 }} key={item.id}>
-              <ProductCard product={item} />
-            </Grid>
-          ))}
-        </Grid>
-      </Container>
-
-    </Box>
-  )
+  return <ProductPageLayout title="Capinhas" emoji="📱" items={items} />
 }
 
 export default Capinhas

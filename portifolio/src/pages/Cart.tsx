@@ -15,17 +15,12 @@ import PaymentsIcon from "@mui/icons-material/Payments"
 import QrCodeIcon from "@mui/icons-material/QrCode"
 import AccountBalanceIcon from "@mui/icons-material/AccountBalance"
 import LocalAtmIcon from "@mui/icons-material/LocalAtm"
+import ShoppingBagIcon from "@mui/icons-material/ShoppingBag"
+import Logo from "../images/Logo.png"
 
-import { useNavigate } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom"
 import { useCart } from "../context/useCart"
 import { useState } from "react"
-
-const sectionCard = {
-  backgroundColor: "#0B0B0D    ",
-  p: 3,
-  borderRadius: 3,
-  mb: 4,
-}
 
 const Cart = () => {
   const { cartItems, total, removeFromCart } = useCart()
@@ -40,7 +35,6 @@ const Cart = () => {
       alert("Por favor, preencha Nome e CPF.")
       return
     }
-
     if (!paymentMethod) {
       alert("Selecione o modo de pagamento.")
       return
@@ -68,171 +62,256 @@ ${message}
 💰 Total: R$ ${total}
     `.trim()
 
-    const res = await fetch("/.netlify/functions/whatsapp", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ message: fullMessage }),
-    })
+    const url = `https://wa.me/5527999346464?text=${encodeURIComponent(fullMessage)}`
+    window.open(url, "_blank")
+  }
 
-    const data = await res.json()
+  const inputSx = {
+    "& .MuiInputLabel-root": { color: "rgba(255,255,255,0.4)", fontSize: 14 },
+    "& .MuiInputLabel-root.Mui-focused": { color: "#FF8C00" },
+    "& .MuiOutlinedInput-root": {
+      background: "rgba(255,255,255,0.03)",
+      color: "#fff",
+      borderRadius: "10px",
+      fontSize: 14,
+      "& fieldset": { borderColor: "rgba(255,255,255,0.08)" },
+      "&:hover fieldset": { borderColor: "rgba(255,255,255,0.2)" },
+      "&.Mui-focused fieldset": { borderColor: "#FF8C00" },
+    },
+  }
 
-    if (!data.url || !data.url.startsWith("https://wa.me/")) {
-      alert("Erro ao gerar link.")
-      return
-    }
-
-    window.open(data.url, "_blank")
+  const cardSx = {
+    background: "rgba(255,255,255,0.03)",
+    border: "1px solid rgba(255,255,255,0.07)",
+    borderRadius: "20px",
+    p: 3,
+    mb: 3,
   }
 
   return (
-    <Box py={12} minHeight="100vh" bgcolor="#0f0f0f">
+    <Box
+      sx={{
+        minHeight: "100vh",
+        background: "#080808",
+        pt: 4,
+        pb: 10,
+      }}
+    >
       <Container maxWidth="sm">
-
-        {/* VOLTAR */}
-        <Button
-          startIcon={<ArrowBackIcon />}
-          onClick={() => navigate(-1)}
-          sx={{
-            mb: 4,
-            color: "#FF8C00",
-            fontWeight: 600,
-            "&:hover": { backgroundColor: "rgba(255,140,0,0.1)" },
-          }}
+        {/* Header */}
+        <Box
+          display="flex"
+          alignItems="center"
+          justifyContent="space-between"
+          mb={4}
         >
-          Voltar
-        </Button>
+          <Button
+            startIcon={<ArrowBackIcon />}
+            onClick={() => navigate(-1)}
+            sx={{
+              color: "rgba(255,255,255,0.6)",
+              fontWeight: 600,
+              fontSize: 13,
+              "&:hover": { color: "#FF8C00", background: "rgba(255,140,0,0.06)" },
+              borderRadius: "10px",
+            }}
+          >
+            Voltar
+          </Button>
 
-        <Typography variant="h4" textAlign="center" mb={6} fontWeight={700}>
-          Seu Carrinho
-        </Typography>
+          <Box
+            component={Link}
+            to="/"
+            sx={{ display: "flex", alignItems: "center", gap: 1, textDecoration: "none" }}
+          >
+            <Box
+              component="img"
+              src={Logo}
+              sx={{ width: 30, height: 30, borderRadius: "8px", border: "1px solid rgba(255,140,0,0.3)" }}
+            />
+            <Typography fontWeight={800} fontSize={14} color="white">
+              UGO <Box component="span" sx={{ color: "#FF8C00" }}>CELULARES</Box>
+            </Typography>
+          </Box>
+        </Box>
+
+        <Box display="flex" alignItems="center" gap={1.5} mb={5}>
+          <ShoppingBagIcon sx={{ color: "#FF8C00", fontSize: 28 }} />
+          <Typography variant="h5" fontWeight={800} color="white">
+            Seu Carrinho
+          </Typography>
+        </Box>
 
         {cartItems.length === 0 ? (
-          <Typography textAlign="center" color="gray">
-            Seu carrinho está vazio
-          </Typography>
+          <Box textAlign="center" py={10}>
+            <Typography fontSize={48} mb={2}>🛒</Typography>
+            <Typography color="rgba(255,255,255,0.4)" fontSize={16} mb={3}>
+              Seu carrinho está vazio
+            </Typography>
+            <Button
+              onClick={() => navigate(-1)}
+              sx={{
+                background: "linear-gradient(135deg, #FF8C00, #FF6B00)",
+                color: "white",
+                fontWeight: 700,
+                px: 4,
+                py: 1.5,
+                borderRadius: "12px",
+              }}
+            >
+              Ver Produtos
+            </Button>
+          </Box>
         ) : (
           <>
             {/* IDENTIFICAÇÃO */}
-            <Box sx={sectionCard}>
-              <Typography variant="subtitle1" fontWeight={700} mb={2}>
+            <Box sx={cardSx}>
+              <Typography fontWeight={700} fontSize={15} color="white" mb={2.5}>
                 Identificação do Cliente
               </Typography>
 
-              <TextField
-                fullWidth
-                label="Nome completo"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                sx={{ mb: 2 }}
-              />
-
-              <TextField
-                fullWidth
-                label="CPF"
-                value={cpf}
-                onChange={(e) => setCpf(e.target.value)}
-                placeholder="000.000.000-00"
-              />
+              <Box display="flex" flexDirection="column" gap={2}>
+                <TextField
+                  fullWidth
+                  label="Nome completo"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  sx={inputSx}
+                />
+                <TextField
+                  fullWidth
+                  label="CPF"
+                  value={cpf}
+                  onChange={(e) => setCpf(e.target.value)}
+                  placeholder="000.000.000-00"
+                  sx={inputSx}
+                />
+              </Box>
             </Box>
 
             {/* PAGAMENTO */}
-            <Box sx={sectionCard}>
-              <Typography variant="subtitle1" fontWeight={700} mb={2}>
+            <Box sx={cardSx}>
+              <Typography fontWeight={700} fontSize={15} color="white" mb={2.5}>
                 Forma de Pagamento
               </Typography>
 
               <Box display="grid" gridTemplateColumns="1fr 1fr" gap={1.5}>
                 {[
-                  { label: "PIX", icon: <QrCodeIcon /> },
-                  { label: "Crédito (12x)", icon: <CreditCardIcon /> },
-                  { label: "Débito", icon: <PaymentsIcon /> },
-                  { label: "Boleto", icon: <AccountBalanceIcon /> },
-                  { label: "Duas Formas", icon: <LocalAtmIcon /> },
+                  { label: "PIX", icon: <QrCodeIcon sx={{ fontSize: 18 }} /> },
+                  { label: "Crédito (12x)", icon: <CreditCardIcon sx={{ fontSize: 18 }} /> },
+                  { label: "Débito", icon: <PaymentsIcon sx={{ fontSize: 18 }} /> },
+                  { label: "Boleto", icon: <AccountBalanceIcon sx={{ fontSize: 18 }} /> },
+                  { label: "Duas Formas", icon: <LocalAtmIcon sx={{ fontSize: 18 }} /> },
                 ].map((option) => (
-                  <Button
+                  <Box
                     key={option.label}
-                    variant={
-                      paymentMethod === option.label
-                        ? "contained"
-                        : "outlined"
-                    }
-                    startIcon={option.icon}
+                    component="button"
                     onClick={() => setPaymentMethod(option.label)}
                     sx={{
-                      borderRadius: 2,
+                      display: "flex",
+                      alignItems: "center",
+                      gap: 1,
+                      px: 2,
+                      py: 1.5,
+                      borderRadius: "12px",
+                      border: paymentMethod === option.label
+                        ? "1px solid #FF8C00"
+                        : "1px solid rgba(255,255,255,0.08)",
+                      background: paymentMethod === option.label
+                        ? "rgba(255,140,0,0.12)"
+                        : "rgba(255,255,255,0.03)",
+                      color: paymentMethod === option.label ? "#FF8C00" : "rgba(255,255,255,0.7)",
                       fontWeight: 600,
-                      ...(paymentMethod === option.label && {
-                        backgroundColor: "#FF8C00",
-                        color: "#000",
-                      }),
+                      fontSize: 13,
+                      cursor: "pointer",
+                      fontFamily: "'Sora', sans-serif",
+                      transition: "all 0.2s",
+                      "&:hover": {
+                        borderColor: "rgba(255,140,0,0.4)",
+                        background: "rgba(255,140,0,0.06)",
+                      },
                     }}
                   >
+                    {option.icon}
                     {option.label}
-                  </Button>
+                  </Box>
                 ))}
               </Box>
             </Box>
 
             {/* ITENS */}
-            <Box sx={sectionCard}>
-              <Typography variant="subtitle1" fontWeight={700} mb={3}>
+            <Box sx={cardSx}>
+              <Typography fontWeight={700} fontSize={15} color="white" mb={2.5}>
                 Itens do Pedido
               </Typography>
 
-              {cartItems.map((item, index) => (
-                <Box
-                  key={index}
-                  sx={{
-                    backgroundColor: "#161616",
-                    p: 2,
-                    borderRadius: 2,
-                    mb: 2,
-                  }}
-                >
-                  <Box display="flex" justifyContent="space-between">
-                    <Box>
-                      <Typography fontWeight={700}>
+              <Box display="flex" flexDirection="column" gap={2}>
+                {cartItems.map((item, index) => (
+                  <Box
+                    key={index}
+                    sx={{
+                      background: "rgba(255,255,255,0.03)",
+                      border: "1px solid rgba(255,255,255,0.06)",
+                      borderRadius: "12px",
+                      p: 2,
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "flex-start",
+                    }}
+                  >
+                    <Box flex={1} mr={1}>
+                      <Typography fontWeight={600} fontSize={13} color="white" lineHeight={1.4}>
                         {item.name}
                       </Typography>
-
                       {item.observation && (
-                        <Typography fontSize={13} color="gray">
+                        <Typography fontSize={11} color="rgba(255,255,255,0.4)" mt={0.5}>
                           Obs: {item.observation}
                         </Typography>
                       )}
                     </Box>
 
-                    <Box display="flex" alignItems="center" gap={1}>
-                      <Typography fontWeight={700}>
-                        R$ {item.price}
+                    <Box display="flex" alignItems="center" gap={1} flexShrink={0}>
+                      <Typography fontWeight={800} fontSize={14} color="#FF8C00">
+                        R$ {item.price.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
                       </Typography>
                       <IconButton
                         onClick={() => removeFromCart(index)}
-                        sx={{ color: "#FF8C00" }}
+                        size="small"
+                        sx={{
+                          color: "rgba(255,255,255,0.3)",
+                          "&:hover": { color: "#ff4444", background: "rgba(255,68,68,0.1)" },
+                        }}
                       >
-                        <DeleteIcon />
+                        <DeleteIcon fontSize="small" />
                       </IconButton>
                     </Box>
                   </Box>
-                </Box>
-              ))}
+                ))}
+              </Box>
             </Box>
 
             {/* TOTAL */}
             <Box
               sx={{
-                backgroundColor: "#0B0B0D  ",
-                p: 3,
-                borderRadius: 3,
-                textAlign: "right",
-                mb: 4,
+                ...cardSx,
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
               }}
             >
-              <Typography variant="subtitle2" color="gray">
+              <Typography color="rgba(255,255,255,0.5)" fontSize={14}>
                 Total do Pedido
               </Typography>
-              <Typography variant="h4" fontWeight={700} color="#FF8C00">
-                R$ {total}
+              <Typography
+                variant="h4"
+                fontWeight={800}
+                sx={{
+                  background: "linear-gradient(135deg, #FF8C00, #FFD700)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                }}
+              >
+                R$ {total.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}
               </Typography>
             </Box>
 
@@ -242,17 +321,21 @@ ${message}
               startIcon={<WhatsAppIcon />}
               onClick={handleWhatsApp}
               sx={{
-                backgroundColor: "#25D366",
-                color: "#000",
+                background: "linear-gradient(135deg, #25D366, #1DB85A)",
+                color: "white",
                 fontWeight: 700,
-                py: 1.8,
+                py: 2,
                 fontSize: 16,
-                borderRadius: 3,
-                boxShadow: 4,
-                "&:hover": { backgroundColor: "#1ebe5d" },
+                borderRadius: "14px",
+                boxShadow: "0 8px 32px rgba(37,211,102,0.3)",
+                "&:hover": {
+                  boxShadow: "0 12px 40px rgba(37,211,102,0.5)",
+                  transform: "translateY(-2px)",
+                },
+                transition: "all 0.3s ease",
               }}
             >
-              Finalizar no WhatsApp
+              Finalizar Pedido no WhatsApp
             </Button>
           </>
         )}

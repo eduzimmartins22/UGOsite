@@ -1,126 +1,178 @@
-import { Box, Container, Typography, Button } from "@mui/material"
+import { Box, Container, Typography, Button, Chip } from "@mui/material"
 import Estabelecimento from "../images/Estabelecimento.jpg"
-import styled from "@emotion/styled"
 import LocationOnIcon from "@mui/icons-material/LocationOn"
 import DirectionsIcon from "@mui/icons-material/Directions"
-
-const EstabelecimentoImg = styled("img")({
-  width: "100%",
-  height: "100%",
-  objectFit: "cover",
-  borderRadius: 16,
-})
-
-const cardStyle = {
-  backgroundColor: "#1F1F1F",
-  borderRadius: 4,
-  overflow: "hidden",
-  transition: "all 0.3s ease",
-  border: "1px solid rgba(255,255,255,0.05)",
-  "&:hover": {
-    transform: { md: "translateY(-6px)" },
-    boxShadow: "0 20px 40px rgba(0,0,0,0.4)",
-    borderColor: "rgba(255,140,0,0.4)",
-  },
-}
+import AccessTimeIcon from "@mui/icons-material/AccessTime"
+import MapIcon from "@mui/icons-material/Map"
 
 const Location = () => {
   return (
     <Box
       id="localizacao"
-      py={{ xs: 12, md: 18 }}
       sx={{
-        background: "linear-gradient(180deg,#111 0%,#1A1A1A 100%)",
-        color: "white",
+        background: "linear-gradient(180deg, #0D0D0D 0%, #111114 100%)",
+        py: { xs: 10, md: 16 },
+        position: "relative",
+        overflow: "hidden",
       }}
     >
-      <Container sx={{ textAlign: "center" }}>
-        {/* HEADER */}
-        <Typography
-          variant="overline"
-          sx={{ color: "#FF8C00", letterSpacing: 2, fontWeight: 700 }}
-        >
-          ONDE ESTAMOS
-        </Typography>
+      {/* Top accent */}
+      <Box
+        sx={{
+          position: "absolute",
+          top: 0,
+          left: "50%",
+          transform: "translateX(-50%)",
+          width: "40%",
+          height: "1px",
+          background: "linear-gradient(90deg, transparent, rgba(255,140,0,0.4), transparent)",
+        }}
+      />
 
-        <Typography
-          sx={{
-            fontSize: { xs: "2.2rem", md: "3rem" },
-            fontWeight: 800,
-            mt: 2,
-          }}
-        >
-          Nossa <span style={{ color: "#FF8C00" }}>Localização</span>
-        </Typography>
-
-        <Typography
-          sx={{
-            mt: 3,
-            opacity: 0.8,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            gap: 1,
-            flexWrap: "wrap",
-          }}
-        >
-          <LocationOnIcon sx={{ color: "#FF8C00" }} />
-          Terminal de Carapina – Serra / ES
-        </Typography>
-
-        {/* BOTÃO MAPS */}
-        <Button
-          href="https://www.google.com/maps/search/?api=1&query=Terminal+de+Carapina+Serra+ES"
-          target="_blank"
-          startIcon={<DirectionsIcon />}
-          sx={{
-            mt: 3,
-            color: "#000",
-            background: "linear-gradient(135deg,#ff8c00,#ffb347)",
-            fontWeight: 700,
-            px: 4,
-            py: 1.3,
-            borderRadius: 3,
-            "&:hover": {
-              transform: "scale(1.05)",
-              boxShadow: "0 10px 30px rgba(255,140,0,0.4)",
-            },
-          }}
-        >
-          Abrir no Google Maps
-        </Button>
-
-        {/* CONTEÚDO */}
-        <Box
-          sx={{
-            mt: 10,
-            display: "flex",
-            flexDirection: { xs: "column", md: "row" },
-            gap: 6,
-            alignItems: "stretch",
-          }}
-        >
-          {/* FOTO */}
-          <Box
+      <Container>
+        {/* Header */}
+        <Box textAlign="center" mb={{ xs: 6, md: 10 }}>
+          <Chip
+            icon={<MapIcon sx={{ fontSize: "16px !important", color: "#FF8C00 !important" }} />}
+            label="ONDE ESTAMOS"
             sx={{
-              ...cardStyle,
-              flex: 1,
-              minHeight: 320,
+              mb: 3,
+              background: "rgba(255,140,0,0.1)",
+              border: "1px solid rgba(255,140,0,0.25)",
+              color: "#FFB347",
+              fontWeight: 700,
+              fontSize: 11,
+              letterSpacing: 1.5,
+            }}
+          />
+
+          <Typography
+            sx={{
+              fontFamily: "'Sora', sans-serif",
+              fontWeight: 800,
+              fontSize: { xs: "2rem", md: "3rem" },
+              letterSpacing: "-1px",
+              color: "white",
+              mb: 2,
             }}
           >
-            <EstabelecimentoImg
-              src={Estabelecimento}
-              alt="Estabelecimento UGO Celulares"
-            />
-          </Box>
+            Nossa{" "}
+            <Box
+              component="span"
+              sx={{
+                background: "linear-gradient(135deg, #FF8C00, #FFD700)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+              }}
+            >
+              Localização
+            </Box>
+          </Typography>
 
-          {/* MAPA */}
           <Box
             sx={{
-              ...cardStyle,
-              flex: 1,
-              position: "relative",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: 1,
+              color: "rgba(255,255,255,0.5)",
+              flexWrap: "wrap",
+              mb: 3,
+            }}
+          >
+            <LocationOnIcon sx={{ color: "#FF8C00", fontSize: 18 }} />
+            <Typography fontSize={15}>
+              Terminal de Carapina – Serra / ES
+            </Typography>
+          </Box>
+
+          <Button
+            href="https://www.google.com/maps/search/?api=1&query=Terminal+de+Carapina+Serra+ES"
+            target="_blank"
+            startIcon={<DirectionsIcon />}
+            sx={{
+              background: "linear-gradient(135deg, #FF8C00, #FF6B00)",
+              color: "white",
+              fontWeight: 700,
+              px: 4,
+              py: 1.5,
+              borderRadius: "12px",
+              boxShadow: "0 8px 24px rgba(255,140,0,0.3)",
+              "&:hover": {
+                boxShadow: "0 12px 32px rgba(255,140,0,0.5)",
+                transform: "translateY(-2px)",
+              },
+              transition: "all 0.3s ease",
+            }}
+          >
+            Abrir no Google Maps
+          </Button>
+        </Box>
+
+        {/* Content */}
+        <Box
+          sx={{
+            display: "grid",
+            gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" },
+            gap: 3,
+          }}
+        >
+          {/* Photo */}
+          <Box
+            sx={{
+              borderRadius: "20px",
+              overflow: "hidden",
+              border: "1px solid rgba(255,255,255,0.07)",
               minHeight: 320,
+              position: "relative",
+            }}
+          >
+            <Box
+              component="img"
+              src={Estabelecimento}
+              alt="Estabelecimento UGO Celulares"
+              sx={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                minHeight: 320,
+                display: "block",
+              }}
+            />
+            {/* overlay label */}
+            <Box
+              sx={{
+                position: "absolute",
+                bottom: 16,
+                left: 16,
+                background: "rgba(8,8,8,0.85)",
+                backdropFilter: "blur(12px)",
+                border: "1px solid rgba(255,255,255,0.1)",
+                borderRadius: "12px",
+                px: 2,
+                py: 1,
+              }}
+            >
+              <Typography fontSize={13} fontWeight={700} color="white">
+                UGO Celulares
+              </Typography>
+              <Box display="flex" alignItems="center" gap={0.5}>
+                <AccessTimeIcon sx={{ fontSize: 12, color: "#FF8C00" }} />
+                <Typography fontSize={11} color="rgba(255,255,255,0.6)">
+                  Terminal de Carapina
+                </Typography>
+              </Box>
+            </Box>
+          </Box>
+
+          {/* Map */}
+          <Box
+            sx={{
+              borderRadius: "20px",
+              overflow: "hidden",
+              border: "1px solid rgba(255,255,255,0.07)",
+              minHeight: 320,
+              position: "relative",
             }}
           >
             <iframe
@@ -130,6 +182,8 @@ const Location = () => {
                 border: 0,
                 position: "absolute",
                 inset: 0,
+                minHeight: 320,
+                filter: "brightness(0.85) saturate(0.8)",
               }}
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"

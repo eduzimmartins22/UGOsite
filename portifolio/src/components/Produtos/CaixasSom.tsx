@@ -1,9 +1,4 @@
-import Grid from "@mui/material/Grid"
-import { Box, Container, Typography, Button } from "@mui/material"
-
-import ProductCard from "../../components/Produtos/ProductCart"
-import CartTopBar from "../../components/CartTopBar"
-
+import ProductPageLayout from "./ProductPageLayout"
 import BKImg from "../../images/BK1619.png"
 import BoomboxExtraGrandeImg from "../../images/BoomboxExtraGrande.png"
 import CaixaAmplificadaBright100WImg from "../../images/CaixaAmplificadaBright100W.png"
@@ -30,7 +25,6 @@ import CaixadeSomHmastonKTS1296Img from "../../images/CaixadeSomHmastonKTS1296.p
 import CaixadeSomJBLCharge5Img from "../../images/CaixadeSomJBLOriginalCharge5.png"
 import CaixadeSomJBLExtreme3Img from "../../images/CaixadeSomJBLOriginalExtreme3.png"
 import SoundbarTomateMTS2025Img from "../../images/SoundbarTomateMTS2025.png"
-
 import CaixadeSomBrightC03Img from "../../images/CaixadeSomBrightC03.png"
 import CaixadeSomD3204Img from "../../images/CaixadeSomD3204.png"
 import CaixadeSomInovaRAD8626Img from "../../images/CaixadeSomInovaRAD8626.png"
@@ -50,13 +44,6 @@ import CaixadeSomSomboxPequenaImg from "../../images/CaixadeSomSomboxPequena.png
 import MiniCaixaSomPC359BrightImg from "../../images/MiniCaixaSomPC359Bright.png"
 import MiniSubwoofer21USBBrightImg from "../../images/MiniSubwoofer2.1USBBright-removebg-preview.png"
 import MiniSubwooferUSB059BrightImg from "../../images/MiniSubwooferUSB059Bright.png"
-
-
-import ArrowBackIcon from "@mui/icons-material/ArrowBack"
-import { useNavigate } from "react-router-dom"
-
-
-
 
 const items = [
   { id: "bk1619", name: "Caixa de Som", model: "BK-1619", image: BKImg, price: 50, promoPrice: 25 },
@@ -235,48 +222,7 @@ const items = [
 ]
 
 const CaixasSom = () => {
-  const navigate = useNavigate()
-
-
-  return (
-    <Box pt={0} pb={10} bgcolor="#111">
-      {/* 🔝 Carrinho fixo no topo */}
-      <CartTopBar />
-
-
-
-      <Container>
-        <Button
-          startIcon={<ArrowBackIcon />}
-          onClick={() => navigate(-1)}
-          sx={{
-            mb: 3,
-            color: "#FF8C00",
-            fontWeight: 600,
-            alignSelf: "flex-start",
-            "&:hover": {
-              backgroundColor: "rgba(255,140,0,0.1)",
-            },
-          }}
-        >
-          Voltar
-        </Button>
-
-        <Typography variant="h2" textAlign="center" mb={6} color="white">
-          Caixas de <span style={{ color: "#FF8C00" }}>Som</span>
-        </Typography>
-
-        <Grid container spacing={5}>
-          {items.map((item) => (
-            <Grid size={{ xs: 12, sm: 6, md: 4 }} key={item.id}>
-              <ProductCard product={item} />
-            </Grid>
-          ))}
-        </Grid>
-      </Container>
-
-    </Box>
-  )
+  return <ProductPageLayout title="Caixas de Som" emoji="🔊" items={items} />
 }
 
 export default CaixasSom

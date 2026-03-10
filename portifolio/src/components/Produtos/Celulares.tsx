@@ -1,9 +1,4 @@
-import Grid from "@mui/material/Grid"
-import { Box, Container, Typography, Button } from "@mui/material"
-
-import ProductCard from "../../components/Produtos/ProductCart"
-import CartTopBar from "../../components/CartTopBar"
-
+import ProductPageLayout from "./ProductPageLayout"
 import Poco40Img from "../../images/Poco40.png"
 import PocoC65Img from "../../images/PocoC65.png"
 import Posi50Img from "../../images/PosiP50.png"
@@ -27,11 +22,6 @@ import SansungA15Img from "../../images/SansungA15.png"
 import Camon18Img from "../../images/Camon18.png"
 import InfiniteImg from "../../images/Infinite.png"
 import Iphone17Img from "../../images/Iphone17.png"
-
-import ArrowBackIcon from "@mui/icons-material/ArrowBack"
-import { useNavigate } from "react-router-dom"
-
-
 
 const items = [
 { id: "5600", name: "Realme C51", model: "128GB / 4GB RAM • Tela 6.74 HD+ 90Hz • 50MP • 5000mAh", image: RealmeC51Img, price: 1100, promoPrice: 550 },
@@ -84,53 +74,7 @@ const items = [
 ];
 
 const Celulares = () => {
-
-  const navigate = useNavigate()
-
-
-  return (
-    <Box pt={0} pb={10} bgcolor="#111">
-      {/* 🔝 Carrinho fixo no topo */}
-      <CartTopBar />
-
-
-
-      <Container>
-        <Button
-          startIcon={<ArrowBackIcon />}
-          onClick={() => navigate(-1)}
-          sx={{
-            mb: 3,
-            color: "#FF8C00",
-            fontWeight: 600,
-            alignSelf: "flex-start",
-            "&:hover": {
-              backgroundColor: "rgba(255,140,0,0.1)",
-            },
-          }}
-        >
-          Voltar
-        </Button>
-
-        <Typography variant="h2" textAlign="center" mb={6} color="white">
-          <span style={{ color: "#FF8C00" }}>Celulares</span>
-        </Typography>
-        <Typography variant="h5" textAlign="center" mb={6} color="white">
-          <span style={{ fontSize: "30px" }}>&#128392;</span>
-          <span style={{ color: "#d8d4d1" }}>Não vendemos Celulares no Boleto</span>
-        </Typography>
-
-        <Grid container spacing={5}>
-          {items.map((item) => (
-            <Grid size={{ xs: 12, sm: 6, md: 4 }} key={item.id}>
-              <ProductCard product={item} />
-            </Grid>
-          ))}
-        </Grid>
-      </Container>
-
-    </Box>
-  )
+  return <ProductPageLayout title="Celulares" emoji="📱" items={items} />
 }
 
 export default Celulares
