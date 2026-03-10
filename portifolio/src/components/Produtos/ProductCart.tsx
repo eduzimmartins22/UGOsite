@@ -1,4 +1,4 @@
-import { Box, Typography, IconButton, TextField, Chip } from "@mui/material"
+import { Box, Typography, TextField, Chip } from "@mui/material"
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart"
 import LocalOfferIcon from "@mui/icons-material/LocalOffer"
 import { useState } from "react"

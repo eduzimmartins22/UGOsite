@@ -74,7 +74,14 @@ const items = [
 ];
 
 const Celulares = () => {
-  return <ProductPageLayout title="Celulares" emoji="📱" items={items} />
+  return (
+    <ProductPageLayout
+      title="Celulares"
+      emoji="📱"
+      items={items}
+      notice="Celulares não são vendidos no boleto. Formas aceitas: PIX, cartão de crédito/débito ou duas formas de pagamento."
+    />
+  )
 }
 
 export default Celulares

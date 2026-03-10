@@ -2,6 +2,7 @@ import { Box, Container, Typography, Button, TextField, InputAdornment, Chip } f
 import Grid from "@mui/material/Grid"
 import ArrowBackIcon from "@mui/icons-material/ArrowBack"
 import SearchIcon from "@mui/icons-material/Search"
+import WarningAmberIcon from "@mui/icons-material/WarningAmber"
 import { useNavigate } from "react-router-dom"
 import CartTopBar from "../CartTopBar"
 import ProductCard from "./ProductCart"
@@ -22,9 +23,10 @@ type Props = {
   title: string
   emoji: string
   items: Product[]
+  notice?: string
 }
 
-const ProductPageLayout = ({ title, emoji, items }: Props) => {
+const ProductPageLayout = ({ title, emoji, items, notice }: Props) => {
   const navigate = useNavigate()
   const [search, setSearch] = useState("")
 
@@ -142,6 +144,29 @@ const ProductPageLayout = ({ title, emoji, items }: Props) => {
             }}
           />
         </Box>
+
+        {/* Notice banner */}
+        {notice && (
+          <Box
+            sx={{
+              mb: 4,
+              px: 2.5,
+              py: 2,
+              borderRadius: "12px",
+              background: "rgba(255, 180, 0, 0.07)",
+              border: "1px solid rgba(255, 180, 0, 0.25)",
+              display: "flex",
+              alignItems: "center",
+              gap: 1.5,
+              maxWidth: 640,
+            }}
+          >
+            <WarningAmberIcon sx={{ color: "#FFB300", fontSize: 20, flexShrink: 0 }} />
+            <Typography fontSize={13} fontWeight={600} color="#FFD166">
+              {notice}
+            </Typography>
+          </Box>
+        )}
 
         {/* Products grid */}
         {filtered.length === 0 ? (
