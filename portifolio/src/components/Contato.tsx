@@ -236,11 +236,7 @@ ${formData.pergunta}
                 border: "1px solid rgba(255,140,0,0.12)",
               }}
             >
-              <Typography fontSize={13} color="rgba(255,255,255,0.6)" lineHeight={1.7}>
-                📍 Terminal de Carapina, Serra/ES<br />
-                ⏰ Segunda a Sábado<br />
-                📞 (27) 99934-6464
-              </Typography>
+             
             </Box>
           </Box>
 
